@@ -1,0 +1,9 @@
+name: cluster-autoscaler
+namespace: kube-system
+serviceType: managed
+
+nodes:
+  asg:
+    name: "test-asg"
+  max: 10
+  min: 1
