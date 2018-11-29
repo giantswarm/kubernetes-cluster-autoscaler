@@ -2,6 +2,12 @@ name: cluster-autoscaler
 namespace: kube-system
 serviceType: managed
 
+
+image:
+  registry: k8s.gcr.io
+  repository: cluster-autoscaler
+  tag: v1.12.1
+
 nodes:
   asg:
     name: "test-asg"

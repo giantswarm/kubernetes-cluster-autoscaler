@@ -5,17 +5,17 @@ metadata:
   namespace: {{ .Values.namespace }}
   labels:
     giantswarm.io/service-type: "{{ .Values.serviceType }}"
-    k8s-app: {{ .Values.name }}
+    app: {{ .Values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      k8s-app: {{ .Values.name }}
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
         giantswarm.io/service-type: "{{ .Values.serviceType }}"
-        k8s-app: {{ .Values.name }}
+        app: {{ .Values.name }}
     spec:
       serviceAccountName: {{ .Values.name }}
       tolerations:
@@ -26,7 +26,7 @@ spec:
       nodeSelector:
         kubernetes.io/role: master
       containers:
-        - image: k8s.gcr.io/cluster-autoscaler:v1.12.1
+        - image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Values.name }}
           resources:
             limits:
