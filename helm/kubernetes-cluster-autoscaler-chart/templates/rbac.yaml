@@ -1,0 +1,150 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    app: {{ .Values.name }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  - endpoints
+  verbs:
+  - create
+  - patch
+- apiGroups: [""]
+  resources:
+  - pods/eviction
+  verbs:
+  - create
+- apiGroups: [""]
+  resources:
+  - pods/status
+  verbs:
+  - update
+- apiGroups: [""]
+  resources:
+  - endpoints
+  resourceNames:
+  - cluster-autoscaler
+  verbs:
+  - get
+  - update
+- apiGroups: [""]
+  resources:
+  - nodes
+  verbs:
+  - watch
+  - list
+  - get
+  - update
+- apiGroups: [""]
+  resources:
+  - pods
+  - services
+  - replicationcontrollers
+  - persistentvolumeclaims
+  - persistentvolumes
+  verbs:
+  - watch
+  - list
+  - get
+- apiGroups:
+  - extensions
+  resources:
+  - replicasets
+  - daemonsets
+  verbs:
+  - watch
+  - list
+  - get
+- apiGroups:
+  - policy
+  resources:
+  - poddisruptionbudgets
+  verbs:
+  - watch
+  - list
+- apiGroups:
+  - apps
+  resources:
+  - statefulsets
+  - replicasets
+  verbs:
+  - watch
+  - list
+  - get
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - watch
+  - list
+  - get
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    app: {{ .Values.name }}
+rules:
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs:
+  - create
+- apiGroups: [""]
+  resources:
+  - configmaps
+  resourceNames:
+  - cluster-autoscaler-status
+  verbs:
+  - delete
+  - get
+  - update
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ .Values.name }}
+  labels:
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    app: {{ .Values.name }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: {{ .Values.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.name }}
+    namespace: {{ .Values.namespace }}
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    giantswarm.io/service-type: "{{ .Values.serviceType }}"
+    k8s-addon: cluster-autoscaler.addons.k8s.io
+    app: {{ .Values.name }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ .Values.name }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ .Values.name }}
+    namespace: {{ .Values.namespace }}
