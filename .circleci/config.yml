@@ -1,0 +1,65 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+    - checkout
+
+    - run:
+        name: Get architect binary
+        command: |
+          wget -q $(curl -sS -H "Authorization: token $RELEASE_TOKEN" https://api.github.com/repos/giantswarm/architect/releases/latest | grep browser_download_url | head -n 1 | cut -d '"' -f 4)
+          chmod +x ./architect
+          ./architect version
+    - run: ./architect build
+
+    - run:
+        name: Publish chart to CNR using a temporary channel for feature branch deploys
+        command: ./architect publish --pipeline=false --channels=wip-${CIRCLE_SHA1}
+
+    - persist_to_workspace:
+        root: .
+        paths:
+        - ./architect
+
+  deploy:
+    machine: true
+    steps:
+    - checkout
+
+    - attach_workspace:
+        at: .
+
+    - run: ./architect deploy
+
+    - run:
+        name: Publish chart to beta channel on CNR
+        command: ./architect publish
+
+  publish_to_stable:
+    machine: true
+    steps:
+    - checkout
+
+    - attach_workspace:
+        at: .
+
+    - run: ./architect publish --stable
+
+workflows:
+  version: 2
+  build_e2e:
+    jobs:
+      - build
+
+      - deploy:
+          filters:
+            branches:
+              only: master
+
+      - publish_to_stable:
+          filters:
+            branches:
+              only: master
+          requires:
+          - deploy
