@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart for the cluster autoscaler.
 name: kubernetes-cluster-autoscaler-chart
-version: 0.0.1-[[ .SHA ]]
+version: 0.1.0-[[ .SHA ]]
