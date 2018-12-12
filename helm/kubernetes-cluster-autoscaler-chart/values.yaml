@@ -9,4 +9,4 @@ image:
   tag: v1.12.1
 
 cluster:
-  name: "test-cluster"
+  id: "test-cluster"
