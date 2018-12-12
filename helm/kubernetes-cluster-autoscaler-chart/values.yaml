@@ -4,8 +4,8 @@ serviceType: managed
 
 
 image:
-  registry: k8s.gcr.io
-  repository: cluster-autoscaler
+  registry: quay.io
+  repository: giantswarm/cluster-autoscaler
   tag: v1.12.1
 
 nodes:
