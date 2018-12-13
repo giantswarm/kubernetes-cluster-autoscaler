@@ -20,8 +20,7 @@ spec:
       serviceAccountName: {{ .Values.name }}
       tolerations:
       - effect: NoSchedule
-        operator: "Equal"
-        value: "true"
+        operator: "Exists"
         key: node-role.kubernetes.io/master
       nodeSelector:
         role: master
@@ -41,7 +40,7 @@ spec:
             - --stderrthreshold=info
             - --cloud-provider=aws
             - --skip-nodes-with-local-storage=false
-            - --nodes=-node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.cluster.id }}
+            - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.cluster.id }}
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt
