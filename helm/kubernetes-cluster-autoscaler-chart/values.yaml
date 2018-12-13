@@ -2,6 +2,8 @@ name: cluster-autoscaler
 namespace: kube-system
 serviceType: managed
 
+aws:
+  region: "eu-central-1"
 
 image:
   registry: quay.io
