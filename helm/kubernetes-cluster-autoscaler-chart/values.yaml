@@ -6,7 +6,7 @@ serviceType: managed
 image:
   registry: quay.io
   repository: giantswarm/cluster-autoscaler
-  tag: v1.12.1
+  tag: v1.13.1
 
 cluster:
   id: "test-cluster"
