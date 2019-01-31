@@ -3,6 +3,9 @@ namespace: kube-system
 serviceType: managed
 
 
+configmap:
+  utilizationThreshold: 0.65
+
 image:
   registry: quay.io
   repository: giantswarm/cluster-autoscaler
