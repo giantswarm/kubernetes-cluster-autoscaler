@@ -12,6 +12,6 @@ spec:
   selector:
     app: {{ .Values.name }}
   ports:
-  - name: {{ .Values.ports.metrics.name }}
-    port: {{ .Values.ports.metrics.port }}
+  - name: "metrics"
+    port: 8085
     protocol: TCP

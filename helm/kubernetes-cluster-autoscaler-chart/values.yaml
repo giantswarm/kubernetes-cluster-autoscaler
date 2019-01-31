@@ -10,8 +10,3 @@ image:
 
 cluster:
   id: "test-cluster"
-
-ports:
-  metrics:
-    name: metrics
-    port: 8085
