@@ -2,7 +2,7 @@ name: cluster-autoscaler
 namespace: kube-system
 serviceType: managed
 
-# Make sure to update the docs at https://github.com/giantswarm/docs if you change the defaults below!
+# Make sure to update the docs at https://github.com/giantswarm/docs/blob/master/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
 configmap:
   scaleDownUtilizationThreshold: 0.65
 
