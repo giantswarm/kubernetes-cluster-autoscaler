@@ -113,6 +113,8 @@ rules:
   - configmaps
   verbs:
   - create
+  - list
+  - watch
 - apiGroups: [""]
   resources:
   - configmaps
