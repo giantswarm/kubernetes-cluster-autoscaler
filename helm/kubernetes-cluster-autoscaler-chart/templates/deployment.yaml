@@ -21,9 +21,9 @@ spec:
       tolerations:
       - effect: NoSchedule
         operator: "Exists"
-        key: node.kubernetes.io/master
+        key: node-role.kubernetes.io/master
       nodeSelector:
-        kubernetes.io/role: master
+        role: master
       containers:
         - image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Values.name }}
