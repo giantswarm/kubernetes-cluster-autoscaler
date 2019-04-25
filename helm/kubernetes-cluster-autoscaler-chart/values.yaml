@@ -9,7 +9,7 @@ configmap:
 image:
   registry: quay.io
   repository: giantswarm/cluster-autoscaler
-  tag: v1.13.1
+  tag: v1.14.0
 
 cluster:
   id: "test-cluster"
