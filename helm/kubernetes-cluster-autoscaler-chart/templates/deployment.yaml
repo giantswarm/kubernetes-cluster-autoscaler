@@ -21,7 +21,7 @@ spec:
       tolerations:
       - effect: NoSchedule
         operator: "Exists"
-        key: node.kubernetes.io/master
+        key: node-role.kubernetes.io/master
       nodeSelector:
         kubernetes.io/role: master
       containers:
