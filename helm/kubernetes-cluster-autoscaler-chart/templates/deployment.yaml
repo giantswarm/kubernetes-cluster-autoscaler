@@ -37,11 +37,15 @@ spec:
           command:
             - ./cluster-autoscaler
             - --v=4
-            - --stderrthreshold=info
             - --cloud-provider=aws
-            - --skip-nodes-with-local-storage=false
-            - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
+            - --expander={{ .Values.configmap.expander }}
+            - --logtostderr=true
             - --node-group-auto-discovery=asg:tag=k8s.io/cluster-autoscaler/enabled,k8s.io/cluster-autoscaler/{{ .Values.cluster.id }}
+            - --skip-nodes-with-local-storage={{ .Values.configmap.skipNodesWithLocalStorage }}
+            - --skip-nodes-with-system-pods={{ .Values.configmap.skipNodesWithSystemPods }}
+            - --scale-down-utilization-threshold={{ .Values.configmap.scaleDownUtilizationThreshold }}
+            - --scan-interval={{ .Values.configmap.scanInterval }}
+            - --stderrthreshold=info
           volumeMounts:
             - name: ssl-certs
               mountPath: /etc/ssl/certs/ca-certificates.crt

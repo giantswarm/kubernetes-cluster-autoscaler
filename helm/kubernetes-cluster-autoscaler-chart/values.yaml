@@ -4,7 +4,11 @@ serviceType: managed
 
 # Make sure to update the docs at https://github.com/giantswarm/docs/blob/master/src/layouts/shortcodes/autoscaler_utilization_threshold.html if you change the defaults below
 configmap:
+  expander: "least-waste"
+  scanInterval: "10s"
   scaleDownUtilizationThreshold: 0.65
+  skipNodesWithLocalStorage: "false"
+  skipNodesWithSystemPods: "true"
 
 image:
   registry: quay.io
