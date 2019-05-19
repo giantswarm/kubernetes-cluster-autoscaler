@@ -18,6 +18,9 @@ spec:
         app: {{ .Values.name }}
     spec:
       serviceAccountName: {{ .Values.name }}
+      securityContext:
+        runAsUser: {{ .Values.userID }}
+        runAsGroup: {{ .Values.groupID }}
       tolerations:
       - effect: NoSchedule
         operator: "Exists"
