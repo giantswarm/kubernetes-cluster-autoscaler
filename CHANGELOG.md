@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project's packages adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [v0.8.0] WIP
+
+## [v0.7.0]
+
+### Changed
+
+- Updated cluster-autoscaler to version 1.14.3.
+
+
 ## [v0.6.0]
 
 ### Added
