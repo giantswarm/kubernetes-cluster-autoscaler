@@ -35,4 +35,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 - Extend configuration options to allow users to tune the Cluster Autoscaler in deep.
 
-[0.4.1]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/21
+[v0.7.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/24
+[v0.6.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/23
+[v0.5.0]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/22
+[v0.4.1]: https://github.com/giantswarm/kubernetes-cluster-autoscaler/pull/21
