@@ -9,7 +9,7 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ### Changed
 
-- Change prioty class from `default` to `system-cluster-critical`.
+- Change prioty class to `giantswarm-critical`.
 
 
 ## [v0.7.0]
