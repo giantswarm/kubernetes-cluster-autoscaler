@@ -27,6 +27,7 @@ spec:
         key: node-role.kubernetes.io/master
       nodeSelector:
         kubernetes.io/role: master
+      priorityClassName: giantswarm-critical
       containers:
         - image: "{{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Values.name }}
