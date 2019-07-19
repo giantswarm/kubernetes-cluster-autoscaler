@@ -7,6 +7,11 @@ and this project's packages adheres to [Semantic Versioning](http://semver.org/s
 
 ## [v0.8.0] WIP
 
+### Changed
+
+- Change prioty class from `default` to `system-cluster-critical`.
+
+
 ## [v0.7.0]
 
 ### Changed
